@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Epoch Converter</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+
+
+  <!-- Favicon -->
+  <link href={% static "img/fav.png" %} rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href={% static "lib/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href={% static "lib/font-awesome/css/font-awesome.min.css" %} rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href={% static "css/style.css" %} rel="stylesheet">
+
+</head>
+<body>
+  <section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <img alt="" src= {% static "img/logo.png" %} height="50px"> <b>Nano Time Converter</b>  </img>
+        </div>
+      </div>
+      <div class="tagline">
+        <b>
+        Convert Nano Second Epoch Time To Human Readable Time
+        </b>
+        <hr color="#199EB8">
+      </div>
+      <table>
+        <tbody>
+        <tr >
+          <td><div>Current Epoch Time into MilliSeconds: <b id="nanosectime"></b>  </div></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+      <script type="text/javascript">
+    function  epochreal() {
+    var now = new Date();
+    var timenow = now.getTime();
+    document.getElementById("nanosectime").innerText = timenow;
+    document.getElementById("nanosectime").textContent = timenow;
+    setTimeout(epochreal,100)
+    }
+    epochreal();
+</script>
+      <br>
+      <form method="POST" action="">
+{% csrf_token %}
+        <table>
+        <tbody>
+        <tr>
+          <td><div>{{form.as_p}}</div></td>
+          <td><b>{{val.validation}}</b></td>
+        </tr>
+        <td><input class="btn btn-full" type="submit" value="Convert"></td>
+        </tbody>
+      </table>
+        <br><br>
+        <table>
+  <tbody>
+  <tr><td colspan="9" height="50px" align="top"><b>Epoch Converted Time into GMT (Add +5:30 hours for IST)</b></td>
+  </tr>
+  <tr>
+    <td>Year</td>
+    <td>Month</td>
+    <td>Day</td>
+    <td>Hour</td>
+    <td>Min</td>
+    <td>Sec</td>
+    <td>Milli</td>
+    <td>Micro</td>
+    <td>Nano</td>
+  </tr>
+  <td align="center">
+    <input align="center" type="text" size="2" value="{{data.year}}" id="output" readonly>&nbsp;-
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.month}}" id="output" readonly>&nbsp;-
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.day}}" id="output" readonly>&nbsp;&nbsp;
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.hour}}" id="output" readonly>&nbsp;:
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.minute}}" id="output" readonly>&nbsp;:
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.seconds}}" id="output" readonly>&nbsp;:
+  </td>
+  <td>
+    <input type="text" size="2"  value="{{data.mili}}" id="output" readonly>&nbsp;:
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.micro}}" id="output" readonly>&nbsp;:
+  </td>
+  <td>
+    <input type="text" size="2" value="{{data.nanosec}}" id="output" readonly>
+  </td>
+  </tbody>
+</table>
+      </form>
+    </div>
+
+
+  </section>
+  <!-- /Hero -->
+
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+
+
+      <nav id="nav-menu-container"> <b align="center">@ Nano converter</b>
+      </nav>
+      <!-- #nav-menu-container -->
+    </div>
+  </header>
+  <!-- #header -->
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+      </div>
+    </div>
+  </footer>
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
+
+  <!-- Required JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/tether/js/tether.min.js"></script>
+  <script src="lib/stellar/stellar.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/easing/easing.js"></script>
+  <script src="lib/stickyjs/sticky.js"></script>
+  <script src="lib/parallax/parallax.js"></script>
+  <script src="lib/lockfixed/lockfixed.min.js"></script>
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="js/custom.js"></script>
+
+</body>
+</html>
