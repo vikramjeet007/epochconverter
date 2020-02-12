@@ -6,7 +6,8 @@ import time
 
 def get_time(request):
     if request.method == "POST":
-        if len(request.POST.get('epochtime')) == 19:
+        length = len(request.POST.get('epochtime'))
+        if length == 10 or length == 19:
             form = EpochForm(request.POST)
             form1 = EpochForm()
             tim = int(request.POST.get('epochtime'))
@@ -18,9 +19,9 @@ def get_time(request):
                mod = '0'*9
             mod = str(mod)
             list = ([str(mod)[i:i + 3] for i in range(0, len(str(mod)), 3)])
-            milisec = (list[0])
-            microsec = (list[1])
-            nanosec = (list[2])
+            milisec = (list[0]) if length > 10 else 0
+            microsec = (list[1])  if length > 10 else 0
+            nanosec = (list[2])  if length > 10 else 0
             day = time.strftime("%a", time.localtime(micro))
             date = time.strftime("%d", time.localtime(micro))
             month = time.strftime("%b", time.localtime(micro))
@@ -46,7 +47,7 @@ def get_time(request):
             return render(request, '../templates/index.html', {'data': data, 'form': form1})
 
         else:
-            val = {'validation': 'Please enter 19 digits value'}
+            val = {'validation': 'Please enter Epoch time in Seconds or Nano seconds'}
             form = EpochForm()
             return render(request, '../templates/index.html', {'val': val, 'form': form})
 
